@@ -1,0 +1,48 @@
+select:focus-visible {
+  outline: white;
+}
+select {
+  width: 645px;
+  border-radius: 20px;
+  height: 40px;
+  padding: 0px 10px;
+  border-color: lightgray;
+}
+hr {
+  width: 780px;
+  margin: 15px 0px 30px 0px;
+  border: 1px solid;
+  color: #f6f6f6;
+}
+
+.text-result {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  margin: 20px 10px;
+}
+.radio {
+  width: 780px;
+  height: 110px;
+  border-radius: 8px;
+  border: 1px solid lightgray;
+  align-items: center !important;
+  padding: 0px 0px 0px 30px !important;
+}
+.radio-option {
+  display: flex;
+  flex-direction: row;
+  justify-content: space-between;
+  width: 680px;
+}
+.input1 {
+  height: 40px ;
+  border-radius: 20px !important;
+  width: 645px !important;
+}
+.input2 {
+  height: 40px;
+  border-radius: 20px !important;
+  width: 100% ;
+  margin-top: 5px !important;
+}

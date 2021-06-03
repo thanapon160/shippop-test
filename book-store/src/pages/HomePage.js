@@ -7,6 +7,8 @@ export default function HomePage() {
     <>
       <Header />
       <div style={{ margin: '0px 100px', height: '100vh' }}>Home</div>
+      <div></div>
+      <div></div>
     </>
   )
 }

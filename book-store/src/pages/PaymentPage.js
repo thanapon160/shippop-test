@@ -1,12 +1,16 @@
 import React, { useState } from "react";
 import Header from "../components/Header"
-import { Button, Typography, Input, Radio, Space } from 'antd';
-import { LockOutlined, CreditCardOutlined, DollarOutlined } from '@ant-design/icons';
+import { Typography, Input, Radio, Space } from 'antd';
+import { CreditCardOutlined, DollarOutlined } from '@ant-design/icons';
+import "../css/payment.css"
+import OrderResult from '../components/OrderResult'
 
 const { Title, Text } = Typography;
+
 export default function PaymentPage() {
   const [shipping, setShipping] = useState('free')
   const [payment, setPayment] = useState('cash')
+  const [country, setCountry] = useState('')
   const handleShipping = (e) => {
     console.log('Shipping: ', e.target.value);
     setShipping(e.target.value)
@@ -15,15 +19,14 @@ export default function PaymentPage() {
     console.log('Payment: ', e.target.value);
     setPayment(e.target.value)
   }
-
-  const textResult = {
-    display: 'flex',
-    flexDirection: 'row',
-    justifyContent: 'space-between',
-    margin: '20px 10px'
+  const handleCountry = (e) => {
+    console.log('Country: ', e.target.value);
+    setCountry(e.target.value)
   }
-  const radio = {
-    width: '780px', height: '110px', borderRadius: '8px', border: '1px solid lightgray', alignItems: 'center', padding: '0px 0px 0px 30px'
+
+  // css style
+  const text = {
+    margin: '5px 0px'
   }
 
   return (
@@ -33,23 +36,62 @@ export default function PaymentPage() {
         <div style={{ width: '62vw', padding: '50px 20px 0px 0px' }}>
           <Title level={1}>ชำระเงิน</Title>
           <Text strong>ที่อยู่ในการจัดส่ง</Text>
-          <hr style={{ width: '780px', margin: '15px 0px 30px 0px', border: '1px solid', color: '#f6f6f6' }} />
-          <div>
-            <Input addonBefore="test" />
+          <hr />
+          <div style={{ display: 'flex', flexDirection: 'column' }}>
+            <div style={{ display: 'flex', flexDirection: 'row', width: '780px', margin: '5px 0px' }}>
+              <div style={{ width: '40%', marginRight: '20px' }}>
+                <Text>ชื่อ</Text>
+                <Input className="input2" />
+              </div>
+              <div style={{ width: '40%' }}>
+                <Text>นามสกุล</Text>
+                <Input className="input2" />
+              </div>
+            </div>
+            <Text style={text}>ประเทศ</Text>
+            <select onChange={handleCountry}>
+              <option value='thailand'>Thailand</option>
+              <option value='japan'>Japan</option>
+              <option value='usa'>USA</option>
+            </select>
+            <Text style={text}>ที่อยู่</Text>
+            <Input className="input1" />
+            <div style={{ display: 'flex', flexDirection: 'row', width: '780px', margin: '5px 0px' }}>
+              <div style={{ width: '40%', marginRight: '20px' }}>
+                <Text>แขวง/ตำบล</Text>
+                <Input className="input2" />
+              </div>
+              <div style={{ width: '40%' }}>
+                <Text>เขต/อำเถอ</Text>
+                <Input className="input2" />
+              </div>
+            </div>
+            <div style={{ display: 'flex', flexDirection: 'row', width: '780px' }}>
+              <div style={{ width: '40%', marginRight: '20px' }}>
+                <Text>จังหวัด</Text>
+                <Input className="input2" />
+              </div>
+              <div style={{ width: '40%' }}>
+                <Text>รหัสไปรษณีย์</Text>
+                <Input className="input2" />
+              </div>
+            </div>
+            <Text style={text}>เบอร์ติดต่อ (กรุณาระบุหมายเลขโทรศัพท์ เฉพาะตัวเลขเท่านั้น)</Text>
+            <Input className="input1" />
           </div>
           <div style={{ marginTop: '50px' }}>
             <Text strong >เลือกขนส่ง</Text>
-            <hr style={{ width: '780px', margin: '15px 0px 30px 0px', border: '1px solid', color: '#f6f6f6' }} />
+            <hr />
             <Radio.Group onChange={handleShipping} value={shipping} >
               <Space direction="vertical" >
-                <Radio value={'free'} style={radio}>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '680px' }}>
+                <Radio value={'free'} className="radio">
+                  <div className="radio-option">
                     <Title level={3} style={{ margin: '0px 0px 0px 20px' }}>Free Shipping</Title>
                     <Text style={{ fontSize: '20px', fontWeight: '700' }}>THB</Text>
                   </div>
                 </Radio>
-                <Radio value={'kerry'} style={radio}>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '680px' }}>
+                <Radio value={'kerry'} className="radio">
+                  <div className="radio-option">
                     <Title level={3} style={{ margin: '0px 0px 0px 20px' }}>Kerry Express</Title>
                     <Text style={{ fontSize: '20px', fontWeight: '700' }}>THB</Text>
                   </div>
@@ -59,16 +101,16 @@ export default function PaymentPage() {
           </div>
           <div style={{ marginTop: '50px' }}>
             <Text strong>วิธีการชำระเงิน</Text>
-            <hr style={{ width: '780px', margin: '15px 0px 30px 0px', border: '1px solid', color: '#f6f6f6' }} />
+            <hr />
             <Radio.Group onChange={handlePayment} value={payment} >
               <Space direction="vertical" >
-                <Radio value={'cash'} style={radio}>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '680px' }}>
+                <Radio value={'cash'} className="radio">
+                  <div className="radio-option">
                     <Title level={3} style={{ margin: '0px 0px 0px 20px' }}><DollarOutlined style={{ marginRight: '10px' }} />Cash</Title>
                   </div>
                 </Radio>
-                <Radio value={'debitCredit'} style={radio}>
-                  <div style={{ display: 'flex', flexDirection: 'row', justifyContent: 'space-between', width: '680px' }}>
+                <Radio value={'debitCredit'} className="radio">
+                  <div className="radio-option">
                     <Title level={3} style={{ margin: '0px 0px 0px 20px' }}><CreditCardOutlined style={{ marginRight: '10px' }} />Debit/Credit</Title>
                   </div>
                 </Radio>
@@ -76,28 +118,7 @@ export default function PaymentPage() {
             </Radio.Group>
           </div>
         </div>
-        <div style={{ padding: '120px 20px 0px 20px', width: '24vw', }}>
-          <div style={{ backgroundColor: '#f5f9ff', padding: '20px 10px', height: '380px', width: '360px' }}>
-            <Title level={2} style={{ margin: '0px 0px 30px 10px' }}>สรุปคำสั่งซื้อ</Title>
-            <div style={textResult}>
-              <Text strong>ยอดรวม</Text>
-              <Text strong>THB</Text>
-            </div>
-            <div style={textResult}>
-              <Text strong>ค่าส่ง</Text>
-              <Text strong>THB</Text>
-            </div>
-            <hr style={{ width: '95%', margin: '30px auto' }} />
-            <div style={textResult}>
-              <Text strong>ยอดสุทธิ</Text>
-              <Title level={3} style={{ margin: '0' }}>THB</Title>
-            </div>
-            <div style={{ display: 'flex', justifyContent: 'center', marginTop: '30px' }}>
-              <Button style={{ width: '90%', height: '50px', backgroundColor: '#0156ff', color: 'white', borderRadius: '50px' }}><LockOutlined />
-                <Text strong style={{ color: 'white' }}>ชำระเงิน</Text>
-              </Button></div>
-          </div>
-        </div>
+        <OrderResult />
       </div>
     </>
   )
