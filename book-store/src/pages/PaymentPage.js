@@ -118,7 +118,7 @@ export default function PaymentPage() {
             </Radio.Group>
           </div>
         </div>
-        <OrderResult />
+        <OrderResult icon='true'/>
       </div>
     </>
   )

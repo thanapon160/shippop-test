@@ -3,12 +3,14 @@ import Header from "../components/Header"
 import { Typography, Button, InputNumber } from 'antd';
 import OrderResult from '../components/OrderResult'
 import { CloseOutlined, EditOutlined } from '@ant-design/icons';
-
 import "../css/payment.css"
+import { useHistory } from 'react-router-dom'
 
 const { Title, Text } = Typography;
 
 export default function CartPage() {
+  const history = useHistory();
+
   return (
     <>
       <Header />
@@ -16,10 +18,10 @@ export default function CartPage() {
         <div style={{ width: '62vw', padding: '50px 20px 0px 0px' }}>
           <Title>ตระกร้าสินค้า</Title>
           <div style={{ display: 'grid', gridTemplateColumns: '40% 19% 19% 22%', width: '780px' }}>
-            <div><Text strong>สินค้า</Text> </div>
-            <div><Text strong>ราคา</Text> </div>
-            <div><Text strong>จำนวน</Text> </div>
-            <div><Text strong>ยอดรวม</Text></div>
+            <Text strong>สินค้า</Text>
+            <Text strong>ราคา</Text>
+            <Text strong>จำนวน</Text> 
+            <Text strong>ยอดรวม</Text>
           </div>
           <hr />
           <div style={{ display: 'grid', gridTemplateColumns: '40% 19% 19% 22%', width: '780px', marginBottom: '20px' }}>
@@ -56,7 +58,7 @@ export default function CartPage() {
           <Button style={{ backgroundColor: 'white', borderRadius: '50px', width: '200px', height: '35px', color: 'gray', marginRight: '10px', border: '2px solid gray' }}>ซื้อสินค้าต่อไป</Button>
           <Button style={{ backgroundColor: 'black', borderRadius: '50px', width: '200px', height: '35px', color: 'white' }}>ล้างตระกร้าสินค้า</Button>
         </div>
-        <OrderResult />
+        <OrderResult onClick={() => history.push('/payment')}/>
       </div>
     </>
   )
