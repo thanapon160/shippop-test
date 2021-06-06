@@ -1,0 +1,11 @@
+.hover-button {
+  display: none;
+}
+
+.card:hover .hover-button {
+  display: flex;
+}
+
+.card:hover {
+  background-color: lightgray;
+}
